@@ -1,16 +1,25 @@
-import React, { useEffect, useRef } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
+import Controls from './components/controls';
 import useAnimation from './hooks/useAnimation';
 
 const App = () => {
-  const { renderer } = useAnimation();
+  const [currentGeometry, setCurrentGeometry] = useState('TorusBufferGeometry');
+  const { renderer, setThreeGeometry } = useAnimation();
   const mountRef = useRef();
 
   useEffect(() => {
     mountRef.current.appendChild(renderer.domElement);
-  }, [renderer.domElement]);
+    setThreeGeometry(currentGeometry);
+  }, [renderer.domElement, currentGeometry, setThreeGeometry]);
 
   return (
-    <div ref={mountRef} />
+    <Fragment>
+      <Controls 
+        currentGeometry={currentGeometry} 
+        setCurrentGeometry={setCurrentGeometry} 
+      />
+      <div ref={mountRef} />
+    </Fragment>
   );
 }
 
