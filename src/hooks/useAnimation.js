@@ -2,10 +2,10 @@ import * as THREE from "three";
 
 const useAnimation = () => {
     const animate = function () {
-        requestAnimationFrame( animate );
+        requestAnimationFrame(animate);
         mesh.rotation.x += 0.01;
         // mesh.rotation.y += 0.01;
-        renderer.render( scene, camera );
+        renderer.render(scene, camera);
     };
 
     const setThreeGeometry = (currentGeometry) => console.log(currentGeometry);
